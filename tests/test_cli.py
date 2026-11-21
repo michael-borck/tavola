@@ -101,7 +101,9 @@ def test_bad_config_path_exits_nonzero() -> None:
 
 
 def test_generate_help_mentions_variants() -> None:
-    result = runner.invoke(app, ["generate", "--help"])
+    result = runner.invoke(
+        app, ["generate", "--help"], env={"COLUMNS": "120"}
+    )
     assert result.exit_code == 0
     assert "--candidates" in result.output
     assert "--judge" in result.output

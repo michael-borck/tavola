@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 2,
+  "app": "tavola",
+  "version": "0.1.0",
+  "generated_at": "2026-11-21T09:30:44+00:00",
+  "source": {
+    "title": "03-library-argument",
+    "origin": "benchmarks/gemini-notebook/sources/03-library-argument.pdf"
+  },
+  "provider": {
+    "name": "gemini",
+    "model": "gemini-2.5-flash"
+  },
+  "brief": {
+    "title": "The library is the last free room in town",
+    "dek": "Libraries provide essential civic infrastructure beyond book storage, offering free public space and critical services.",
+    "thesis": "Libraries are vital civic infrastructure, providing free indoor public space and services that address access, attention, and company, which are often overlooked in budget comparisons.",
+    "claims": [
+      {
+        "text": "When a town closes a library, it removes the only indoor place where a person can stay without spending money.",
+        "value": null,
+        "label": null,
+        "numeric": null,
+        "unit": null,
+        "source": null
+      },
+      {
+        "text": "Libraries provide access for job applications, benefits forms, schoolwork, and immigration paperwork, which increasingly assume a computer and a quiet hour.",
+        "value": null,
+        "label": null,
+        "numeric": null,
+        "unit": null,
+        "source": null
+      },
+      {
+        "text": "A room where no one is selling anything is rare, offering a space for reading and thinking.",
+        "value": null,
+        "label": null,
+        "numeric": null,
+        "unit": null,
+        "source": null
+      },
+      {
+        "text": "Older residents, new parents, freelancers, and schoolchildren share a table in libraries without needing a specific reason.",
+        "value": null,
+        "label": null,
+        "numeric": null,
+        "unit": null,
+        "source": null
+      },
+      {
+        "text": "Library budgets are usually compared with book purchases or digital subscriptions, but a better comparison is the cost of isolation.",
+        "value": null,
+        "label": null,
+        "numeric": null,
+        "unit": null,
+        "source": null
+      }
+    ],
+    "relationships": [
+      {
+        "kind": "hierarchy",
+        "summary": "The library building is the root, providing access, attention, and company.",
+        "items": [
+          "Building",
+          "Access",
+          "Attention",
+          "Company"
+        ]
+      }
+    ],
+    "series": [],
+    "risks": [],
+    "quote": "A library card is the cheapest membership in civic life.",
+    "bottom_line": "Libraries should be funded as essential infrastructure and measured by the people who use their space and services, not just by acquisitions.",
+    "citations": [],
+    "suggested_density": "standard"
+  },
+  "plan": {
+    "layout": "statement",
+    "style": "editorial",
+    "orientation": "portrait",
+    "density": "standard",
+    "palette": [],
+    "emphasis": [
+      0,
+      4
+    ],
+    "assets": [],
+    "rationale": "The brief provides a strong thesis and supporting claims, making the 'statement' layout suitable. The 'editorial' style complements the serious and important nature of the topic."
+  },
+  "design": {
+    "routing": {
+      "router": "tev",
+      "model": "tev1:4b",
+      "layout": "statement",
+      "confidence": 0.138,
+      "probability": 0.527,
+      "probabilities": {
+        "illustrated-quote": 0.16379142595567794,
+        "hierarchy": 0.10646794269378729,
+        "statement": 0.5273242864002654,
+        "poster": 0.20241634495026942
+      },
+      "usage": {
+        "input_tokens": 576,
+        "output_tokens": 0
+      },
+      "accepted": false
+    },
+    "candidates": [
+      {
+        "plan": {
+          "layout": "illustrated-quote",
+          "style": "professional",
+          "orientation": "portrait",
+          "density": "standard",
+          "palette": [],
+          "emphasis": [],
+          "assets": [],
+          "rationale": "Seeded by the deterministic composition ranking."
+        },
+        "score": 67.0,
+        "score_source": "vision",
+        "reason": "The text is generally legible, but the composition feels a bit unbalanced with the large central illustration dominating and the claims at the bottom feeling somewhat disconnected.",
+        "measurements": {
+          "elements": 21,
+          "min_font_px": 11.5,
+          "min_font_element": "p.rail-kicker",
+          "contrast_checks": 9,
+          "contrast_min": 7.4,
+          "contrast_min_element": "p.illus-dek",
+          "overflow": [],
+          "clipped": [],
+          "contrast_failures": [],
+          "orphaned": []
+        }
+      },
+      {
+        "plan": {
+          "layout": "hierarchy",
+          "style": "warm",
+          "orientation": "portrait",
+          "density": "standard",
+          "palette": [],
+          "emphasis": [
+            0,
+            1,
+            2
+          ],
+          "assets": [],
+          "rationale": "The brief explicitly states a hierarchy relationship, making the 'hierarchy' layout the most suitable choice. The 'warm' style complements the human-centered message of the brief."
+        },
+        "score": 65.0,
+        "score_source": "vision",
+        "reason": "The text is clear and readable, but the large empty space in the middle of the page creates a compositional imbalance and disrupts the flow of information.",
+        "measurements": {
+          "elements": 41,
+          "min_font_px": 11.2,
+          "min_font_element": "span.tree-child-index",
+          "contrast_checks": 15,
+          "contrast_min": 4.7,
+          "contrast_min_element": "p.eyebrow",
+          "overflow": [],
+          "clipped": [],
+          "contrast_failures": [],
+          "orphaned": []
+        }
+      },
+      {
+        "plan": {
+          "layout": "statement",
+          "style": "editorial",
+          "orientation": "portrait",
+          "density": "standard",
+          "palette": [],
+          "emphasis": [
+            0,
+            4
+          ],
+          "assets": [],
+          "rationale": "The brief provides a strong thesis and supporting claims, making the 'statement' layout suitable. The 'editorial' style complements the serious and important nature of the topic."
+        },
+        "score": 81.0,
+        "score_source": "vision",
+        "reason": "The page is highly legible with clear typography and good contrast, but the composition feels a bit top-heavy with a large empty space in the middle, and the hierarchy could be stronger if the thesis statement was more visually distinct from the claims.",
+        "measurements": {
+          "elements": 23,
+          "min_font_px": 12.2,
+          "min_font_element": "p.eyebrow",
+          "contrast_checks": 13,
+          "contrast_min": 5.6,
+          "contrast_min_element": "p.dek",
+          "overflow": [],
+          "clipped": [],
+          "contrast_failures": [],
+          "orphaned": []
+        }
+      }
+    ]
+  },
+  "render": {
+    "format": "png",
+    "width": 1080,
+    "height": 1350
+  },
+  "warnings": [
+    "Router 'tev' was not decisive enough (53%); used the design model."
+  ],
+  "quality": {
+    "passed": true,
+    "issues": [],
+    "measurements": {
+      "elements": 23,
+      "min_font_px": 12.2,
+      "min_font_element": "p.eyebrow",
+      "contrast_checks": 13,
+      "contrast_min": 5.6,
+      "contrast_min_element": "p.dek",
+      "overflow": [],
+      "clipped": [],
+      "contrast_failures": [],
+      "orphaned": []
+    }
+  }
+}

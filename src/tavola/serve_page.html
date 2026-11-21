@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tavola</title>
+<style>
+:root {
+  --bg: #f5f2ec;
+  --panel: #fffdf8;
+  --ink: #1c1a16;
+  --muted: #6f6a60;
+  --line: #ded8cc;
+  --accent: #b8420f;
+  --accent-soft: #f4e3d8;
+  --radius: 12px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--font);
+  font-size: 15px; line-height: 1.45; -webkit-font-smoothing: antialiased;
+}
+.shell { display: flex; flex-direction: column; min-height: 100%; }
+header {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+  padding: 1.1rem 1.6rem; border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: baseline; gap: 0.7rem; }
+.brand h1 { font-family: var(--display); font-size: 1.65rem; letter-spacing: -0.01em; }
+.brand span { color: var(--muted); font-size: 0.9rem; }
+.provider { font-size: 0.78rem; color: var(--muted); text-align: right; }
+.provider strong { color: var(--ink); font-weight: 600; }
+main {
+  flex: 1; display: grid; grid-template-columns: 370px minmax(0, 1fr);
+  gap: 1.1rem; padding: 1.1rem 1.6rem 1.6rem; align-items: start;
+}
+.panel {
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+}
+.form { padding: 1.1rem; display: flex; flex-direction: column; gap: 0.95rem; position: sticky; top: 1.1rem; }
+label { display: block; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
+textarea, input, select, button { font: inherit; color: inherit; }
+textarea, input[type="url"] {
+  width: 100%; padding: 0.65rem 0.7rem; background: #fff;
+  border: 1px solid var(--line); border-radius: 8px; resize: vertical;
+}
+textarea { min-height: 190px; }
+textarea:focus, input:focus, select:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
+select {
+  width: 100%; padding: 0.5rem 0.6rem; background: #fff;
+  border: 1px solid var(--line); border-radius: 8px;
+}
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+.hint { font-size: 0.76rem; color: var(--muted); }
+.visual-styles { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
+.visual-style {
+  appearance: none; border: 1px solid var(--line); background: var(--panel);
+  border-radius: 10px; padding: 0.35rem; text-align: left; cursor: pointer;
+  display: flex; flex-direction: column; gap: 0.35rem;
+}
+.visual-style:hover { border-color: var(--accent); }
+.visual-style.active { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+.style-preview {
+  position: relative; display: block; width: 100%; aspect-ratio: 4 / 3;
+  border-radius: 7px; overflow: hidden; background: #f3ece1; object-fit: cover;
+}
+.style-caption { display: flex; flex-direction: column; gap: 0.08rem; }
+.style-caption strong { font-size: 0.76rem; color: var(--ink); }
+.style-caption small { font-size: 0.65rem; line-height: 1.25; color: var(--muted); }
+.style-editorial { background: #f3ece1; }
+.style-editorial::before {
+  content: ""; position: absolute; width: 55%; aspect-ratio: 1;
+  border-radius: 50%; background: #8f2d2d; right: -8%; bottom: -14%;
+}
+.style-editorial::after {
+  content: ""; position: absolute; left: 12%; top: 18%; width: 46%;
+  height: 20%; border: 2px solid #34516f; transform: rotate(-8deg);
+}
+.style-clay { background: radial-gradient(circle at 30% 30%, #f5e6d0, #d7b58a); }
+.style-clay::before {
+  content: ""; position: absolute; width: 46%; aspect-ratio: 1;
+  border-radius: 44% 56% 58% 42%; background: #8fa36b;
+  left: 18%; top: 20%; box-shadow: inset -8px -10px 18px rgba(0,0,0,.18);
+}
+.style-clay::after {
+  content: ""; position: absolute; width: 32%; aspect-ratio: 1;
+  border-radius: 50%; background: #e7c49e; right: 10%; bottom: 12%;
+  box-shadow: inset -5px -7px 12px rgba(0,0,0,.16);
+}
+.style-sketch {
+  background: repeating-linear-gradient(0deg, #fbf8ef 0 7px, #f2ecdf 8px 9px);
+}
+.style-sketch::before {
+  content: ""; position: absolute; left: 16%; top: 22%; width: 48%;
+  height: 38%; border: 2px solid #1e2a38; border-radius: 42% 55% 48% 52%;
+  transform: rotate(-7deg);
+}
+.style-sketch::after {
+  content: ""; position: absolute; left: 30%; bottom: 16%; width: 42%;
+  border-top: 2px dashed #2563eb; transform: rotate(5deg);
+}
+.style-minimal { background: #f7f5ef; }
+.style-minimal::before {
+  content: ""; position: absolute; left: 12%; top: 14%; width: 32%;
+  height: 58%; background: #0f766e; border-radius: 6px;
+}
+.style-minimal::after {
+  content: ""; position: absolute; right: 12%; bottom: 14%; width: 26%;
+  height: 38%; background: #b07a28; border-radius: 999px;
+}
+.style-papercut { background: #efe4cf; }
+.style-papercut::before {
+  content: ""; position: absolute; inset: 12% 18% 26% 12%;
+  background: #8fa36b; border-radius: 8px 24px 10px 18px;
+  box-shadow: 3px 4px 0 rgba(70, 55, 35, .18); transform: rotate(-5deg);
+}
+.style-papercut::after {
+  content: ""; position: absolute; right: 12%; top: 16%; width: 38%;
+  height: 42%; background: #c45a2c; border-radius: 40% 10% 32% 14%;
+  box-shadow: 3px 4px 0 rgba(70, 55, 35, .16); transform: rotate(7deg);
+}
+.style-cinematic { background: radial-gradient(circle at 70% 30%, #d9a441, #182237 48%, #080b12); }
+.style-cinematic::before {
+  content: ""; position: absolute; left: 14%; top: 14%; width: 36%;
+  height: 58%; background: linear-gradient(160deg, #f5d48a, #8a4b27);
+  clip-path: polygon(20% 0, 100% 18%, 72% 100%, 0 82%);
+  opacity: .9;
+}
+.style-cinematic::after {
+  content: ""; position: absolute; right: 14%; bottom: 14%; width: 26%;
+  height: 34%; border: 2px solid rgba(255,255,255,.7); border-radius: 50%;
+}
+button.primary {
+  width: 100%; padding: 0.8rem 1rem; border: 0; border-radius: 9px;
+  background: var(--accent); color: #fff; font-weight: 700; cursor: pointer;
+}
+button.primary:hover { background: #9d3709; }
+button.primary:disabled { opacity: 0.55; cursor: progress; }
+.status { min-height: 1.2rem; font-size: 0.84rem; color: var(--muted); }
+.error { color: #a3231b; font-size: 0.86rem; white-space: pre-wrap; }
+.canvas { display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+.result { padding: 1.1rem; }
+.empty {
+  min-height: 430px; display: grid; place-items: center; text-align: center;
+  color: var(--muted); padding: 2rem;
+}
+.empty strong { display: block; font-family: var(--display); font-size: 1.4rem; color: var(--ink); margin-bottom: 0.3rem; }
+.preview { background: #efeae1; border-radius: 10px; padding: 0.8rem; display: grid; place-items: center; }
+.preview img { max-width: 100%; max-height: 62vh; box-shadow: 0 12px 30px rgba(30, 22, 12, 0.16); border-radius: 4px; }
+.meta { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.9rem 0 0.5rem; }
+.chip { font-size: 0.72rem; padding: 0.2rem 0.55rem; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); }
+.title { font-family: var(--display); font-size: 1.5rem; line-height: 1.2; margin-top: 0.4rem; }
+.thesis { margin-top: 0.4rem; color: var(--muted); }
+.bottom { margin-top: 0.7rem; padding-top: 0.6rem; border-top: 1px solid var(--line); font-weight: 600; font-size: 0.95rem; }
+.links { display: flex; gap: 0.9rem; margin-top: 0.8rem; font-size: 0.82rem; }
+.links a { color: var(--accent); text-decoration: none; font-weight: 600; }
+.warn { margin-top: 0.7rem; font-size: 0.82rem; color: #8a5a00; background: #fbf1d9; border: 1px solid #ecd7a0; border-radius: 8px; padding: 0.5rem 0.7rem; }
+.gallery { padding: 0.8rem; }
+.gallery h2 { font-size: 0.74rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
+.thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 0.6rem; }
+.thumb { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; cursor: pointer; padding: 0; text-align: left; }
+.thumb img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.thumb span { display: block; padding: 0.3rem 0.4rem; font-size: 0.68rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.thumb:hover { border-color: var(--accent); }
+@media (max-width: 900px) {
+  main { grid-template-columns: 1fr; }
+  .form { position: static; }
+}
+</style>
+</head>
+<body>
+<div class="shell">
+<header>
+  <div class="brand"><h1>Tavola</h1><span>One source. One page.</span></div>
+  <p class="provider" id="provider">checking the model…</p>
+</header>
+<main>
+  <section class="panel form">
+    <div>
+      <label for="text">Source text</label>
+      <textarea id="text" placeholder="Paste an article, report, notes, or transcript…"></textarea>
+    </div>
+    <div>
+      <label for="url">Or a URL</label>
+      <input id="url" type="url" placeholder="https://example.com/report">
+      <p class="hint">A URL takes precedence over the pasted text.</p>
+    </div>
+    <div class="row">
+      <div>
+        <label for="mode">Mode</label>
+        <select id="mode"></select>
+      </div>
+      <div>
+        <label for="layout">Layout</label>
+        <select id="layout"><option value="">Auto</option></select>
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label for="style">Theme</label>
+        <select id="style"></select>
+      </div>
+      <div>
+        <label for="illustration">Illustration</label>
+        <select id="illustration">
+          <option value="">Config</option>
+          <option value="off">Off</option>
+          <option value="on">On</option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <label>Visual style</label>
+      <div class="visual-styles" id="visual_styles"></div>
+    </div>
+    <div>
+      <label for="direction">Art direction</label>
+      <input id="direction" type="text" placeholder="e.g. use a warm coastal palette, avoid people">
+      <p class="hint">Optional. Tavola still forbids text inside the illustration.</p>
+    </div>
+    <div class="row">
+      <div>
+        <label for="orientation">Format</label>
+        <select id="orientation"></select>
+      </div>
+      <div>
+        <label for="density">Density</label>
+        <select id="density"></select>
+      </div>
+    </div>
+    <button class="primary" id="go" type="button">Generate</button>
+    <p class="status" id="status"></p>
+    <p class="error" id="error" hidden></p>
+  </section>
+
+  <section class="canvas">
+    <div class="panel result" id="result">
+      <div class="empty" id="empty">
+        <div><strong>Nothing yet</strong>Paste a source and press Generate.</div>
+      </div>
+    </div>
+    <div class="panel gallery" id="gallery" hidden>
+      <h2>This session</h2>
+      <div class="thumbs" id="thumbs"></div>
+    </div>
+  </section>
+</main>
+</div>
+<script>
+const $ = (id) => document.getElementById(id);
+let meta = null;
+let selectedIllustrationStyle = null;
+const items = new Map();
+
+function renderVisualStyles() {
+  const wrap = $("visual_styles");
+  wrap.innerHTML = "";
+  for (const style of meta.illustration_styles) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "visual-style" + (style.id === selectedIllustrationStyle ? " active" : "");
+    const preview = document.createElement("img");
+    preview.className = "style-preview";
+    preview.src = "/previews/" + style.id + ".jpg";
+    preview.alt = "";
+    preview.loading = "lazy";
+    const caption = document.createElement("span");
+    caption.className = "style-caption";
+    const name = document.createElement("strong");
+    name.textContent = style.name;
+    const description = document.createElement("small");
+    description.textContent = style.description;
+    caption.append(name, description);
+    button.append(preview, caption);
+    button.addEventListener("click", () => {
+      selectedIllustrationStyle = style.id;
+      renderVisualStyles();
+    });
+    wrap.append(button);
+  }
+}
+
+function fillSelect(select, values) {
+  for (const [value, label] of values) {
+    const option = document.createElement("option");
+    option.value = value;
+    option.textContent = label;
+    select.append(option);
+  }
+}
+
+async function boot() {
+  try {
+    meta = await (await fetch("/api/meta")).json();
+  } catch (error) {
+    showError("Could not reach the Tavola server.");
+    return;
+  }
+  fillSelect($("mode"), meta.modes.map((m) => [m, m]));
+  fillSelect($("layout"), meta.layouts.map((l) => [l.id, `${l.name} · ${l.id}`]));
+  fillSelect($("style"), meta.styles.map((s) => [s.id, s.name]));
+  selectedIllustrationStyle = meta.defaults.illustration.preset;
+  renderVisualStyles();
+  fillSelect($("orientation"), Object.entries(meta.orientations).map(([name, size]) => [name, `${name} · ${size.width}×${size.height}`]));
+  fillSelect($("density"), meta.densities.map((d) => [d, d]));
+  $("mode").value = meta.defaults.mode;
+  $("style").value = meta.defaults.style;
+  $("direction").value = meta.defaults.illustration.direction || "";
+  $("orientation").value = meta.defaults.orientation;
+  $("density").value = meta.defaults.density;
+  const provider = meta.provider;
+  $("provider").innerHTML = provider.ready
+    ? `Using <strong>${escapeHtml(provider.label)}</strong>${provider.model ? " · " + escapeHtml(provider.model) : ""}`
+    : `Model not configured: ${escapeHtml(provider.error || "")}`;
+  loadGallery();
+}
+
+function escapeHtml(value) {
+  return String(value ?? "").replace(/[&<>"']/g, (c) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+  })[c]);
+}
+
+async function loadGallery() {
+  try {
+    const list = await (await fetch("/api/gallery")).json();
+    list.forEach(addThumb);
+    $("gallery").hidden = list.length === 0;
+  } catch (_) { /* in-memory gallery is best effort */ }
+}
+
+function addThumb(item) {
+  items.set(item.id, item);
+  if (document.querySelector(`[data-id="${item.id}"]`)) return;
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "thumb";
+  button.dataset.id = item.id;
+  button.innerHTML = `<img src="${item.url}" alt=""><span>${escapeHtml(item.title)}</span>`;
+  button.addEventListener("click", () => showItem(item));
+  $("thumbs").prepend(button);
+  $("gallery").hidden = false;
+}
+
+function showError(message) {
+  const element = $("error");
+  element.hidden = false;
+  element.textContent = message;
+}
+
+function clearError() {
+  const element = $("error");
+  element.hidden = true;
+  element.textContent = "";
+}
+
+function showItem(item) {
+  const warnings = [...(item.warnings || []), ...((item.quality && item.quality.warnings) || [])];
+  $("result").innerHTML = `
+    <div class="preview"><img src="${item.url}" alt="${escapeHtml(item.title)}"></div>
+    <div class="meta">
+      <span class="chip">${escapeHtml(item.layout)}</span>
+      <span class="chip">${escapeHtml(item.style)}</span>
+      <span class="chip">${escapeHtml(item.orientation)} · ${item.width}×${item.height}</span>
+      <span class="chip">${escapeHtml(item.density)}</span>
+    </div>
+    <h2 class="title">${escapeHtml(item.title)}</h2>
+    <p class="thesis">${escapeHtml(item.thesis)}</p>
+    <p class="bottom">${escapeHtml(item.bottom_line)}</p>
+    <div class="links">
+      <a href="${item.url}" download="${escapeHtml(item.filename)}">Download PNG</a>
+      <a href="/files/${encodeURIComponent(item.sidecar)}" download="${escapeHtml(item.sidecar)}">Brief and plan (JSON)</a>
+    </div>
+    ${warnings.length ? `<div class="warn">${warnings.map(escapeHtml).join("<br>")}</div>` : ""}
+  `;
+  addThumb(item);
+}
+
+async function run() {
+  clearError();
+  const text = $("text").value.trim();
+  const url = $("url").value.trim();
+  if (!text && !url) {
+    showError("Paste text or give a URL first.");
+    return;
+  }
+  const payload = {
+    text,
+    url,
+    layout: $("layout").value || null,
+    style: $("style").value || null,
+    orientation: $("orientation").value || null,
+    density: $("density").value || null,
+    mode: $("mode").value || null,
+    illustration_enabled: $("illustration").value === "on" ? true : $("illustration").value === "off" ? false : null,
+    illustration_style: selectedIllustrationStyle || null,
+    illustration_direction: $("direction").value || null,
+  };
+  $("go").disabled = true;
+  $("status").textContent = "Reading, planning, rendering…";
+  const started = performance.now();
+  try {
+    const response = await fetch("/api/generate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    if (!response.ok) {
+      let detail = `Request failed (${response.status}).`;
+      try {
+        const body = await response.json();
+        if (body.detail) detail = typeof body.detail === "string" ? body.detail : JSON.stringify(body.detail);
+      } catch (_) { /* keep the status line */ }
+      throw new Error(detail);
+    }
+    const item = await response.json();
+    showItem(item);
+    const seconds = ((performance.now() - started) / 1000).toFixed(1);
+    $("status").textContent = `Done in ${seconds}s.`;
+  } catch (error) {
+    $("status").textContent = "";
+    showError(error.message || String(error));
+  } finally {
+    $("go").disabled = false;
+  }
+}
+
+$("go").addEventListener("click", run);
+$("text").addEventListener("keydown", (event) => {
+  if ((event.metaKey || event.ctrlKey) && event.key === "Enter") run();
+});
+boot();
+</script>
+</body>
+</html>

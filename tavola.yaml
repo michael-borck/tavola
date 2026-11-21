@@ -1,0 +1,22 @@
+# Local defaults for this checkout. The key is read from the environment.
+llm: gemini
+
+llms:
+  gemini:
+    model: gemini-2.5-flash
+    api_key: "${GEMINI_API_KEY}"
+    timeout: 180
+
+illustration:
+  provider: gemini
+  preset: editorial
+  direction: ""
+
+design:
+  mode: auto
+  candidates: 3
+  judge: gemini
+  router: tev
+
+render:
+  measure: true

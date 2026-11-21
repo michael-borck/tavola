@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 2,
+  "app": "tavola",
+  "version": "0.1.0",
+  "generated_at": "2026-11-21T06:58:09+00:00",
+  "source": {
+    "title": "02-launch-timeline",
+    "origin": "benchmarks/gemini-notebook/sources/02-launch-timeline.pdf"
+  },
+  "provider": {
+    "name": "gemini",
+    "model": "gemini-2.5-flash"
+  },
+  "brief": {
+    "title": "Launching the Neighbourhood Heat Pilot",
+    "dek": "A six-month operating plan for a small council pilot to test a repeatable model for cooling public streets.",
+    "thesis": "The pilot aims to develop a repeatable model for cooling public streets, focusing on measurable outcomes and a costed plan for potential city-wide implementation.",
+    "claims": [
+      {
+        "text": "The pilot covers four streets, two schools, and one transport interchange.",
+        "value": "four",
+        "label": "streets",
+        "numeric": 4.0,
+        "unit": null,
+        "source": null
+      },
+      {
+        "text": "The pilot will track surface temperature, canopy cover, rain interception, complaints, and maintenance hours.",
+        "value": null,
+        "label": null,
+        "numeric": null,
+        "unit": null,
+        "source": null
+      },
+      {
+        "text": "A traffic-light review at month five decides whether to continue the pilot.",
+        "value": "five",
+        "label": "month",
+        "numeric": 5.0,
+        "unit": null,
+        "source": null
+      },
+      {
+        "text": "The final report should fit on one page and include a clear recommendation.",
+        "value": null,
+        "label": null,
+        "numeric": null,
+        "unit": null,
+        "source": null
+      },
+      {
+        "text": "The council wants to test a repeatable model for cooling public streets before committing to a city-wide programme.",
+        "value": null,
+        "label": null,
+        "numeric": null,
+        "unit": null,
+        "source": null
+      }
+    ],
+    "relationships": [
+      {
+        "kind": "sequence",
+        "summary": "The pilot follows a five-phase sequence from planning to review.",
+        "items": [
+          "Map and prioritise",
+          "Design and procure",
+          "Install",
+          "Measure",
+          "Review and scale"
+        ]
+      },
+      {
+        "kind": "sequence",
+        "summary": "The pilot timeline outlines key milestones and owners over six months.",
+        "items": [
+          "Street selection and baseline",
+          "Species and procurement",
+          "Community review",
+          "Planting week",
+          "Watering and monitoring",
+          "Evaluation and playbook"
+        ]
+      }
+    ],
+    "series": [],
+    "risks": [
+      {
+        "risk": "Dry spring or irrigation failure.",
+        "mitigation": "contract a backup watering crew."
+      },
+      {
+        "risk": "Community opposition to tree pits or parking loss.",
+        "mitigation": "publish trade-offs and co-design two sites."
+      },
+      {
+        "risk": "Measurement gaps.",
+        "mitigation": "baseline sensors before planting and two control streets."
+      }
+    ],
+    "quote": null,
+    "bottom_line": "The neighbourhood heat pilot is designed to create a repeatable, costed model for urban cooling, with clear phases, success measures, and risk mitigations.",
+    "citations": [],
+    "suggested_density": "detailed"
+  },
+  "plan": {
+    "layout": "process",
+    "style": "warm",
+    "orientation": "portrait",
+    "density": "standard",
+    "palette": [],
+    "emphasis": [],
+    "assets": [],
+    "rationale": "The brief clearly outlines a sequence of phases and milestones, making the process layout a suitable choice. The warm style offers a friendly and approachable tone for a community-focused pilot."
+  },
+  "design": {
+    "routing": {
+      "router": "tev",
+      "model": "tev1:4b",
+      "layout": "illustrated",
+      "confidence": 0.625,
+      "probability": 0.87,
+      "probabilities": {
+        "illustrated": 0.8697754748519797,
+        "process": 0.02638801724712837,
+        "antv-sequence": 0.037316485787322155,
+        "hero-stat": 0.0665200221135698
+      },
+      "usage": {
+        "input_tokens": 633,
+        "output_tokens": 0
+      },
+      "accepted": true
+    },
+    "candidates": [
+      {
+        "plan": {
+          "layout": "illustrated",
+          "style": "professional",
+          "orientation": "portrait",
+          "density": "standard",
+          "palette": [],
+          "emphasis": [],
+          "assets": [],
+          "rationale": "Seeded by the tev router."
+        },
+        "score": 77.0,
+        "score_source": "vision",
+        "reason": "The page is generally clear and well-structured, though the overlapping text in the main idea section slightly detracts from legibility and composition.",
+        "measurements": {
+          "elements": 111,
+          "min_font_px": 11.2,
+          "min_font_element": "span",
+          "contrast_checks": 31,
+          "contrast_min": 7.4,
+          "contrast_min_element": "p.illus-dek",
+          "overflow": [],
+          "clipped": [],
+          "contrast_failures": [],
+          "orphaned": []
+        }
+      },
+      {
+        "plan": {
+          "layout": "process",
+          "style": "warm",
+          "orientation": "portrait",
+          "density": "standard",
+          "palette": [],
+          "emphasis": [],
+          "assets": [],
+          "rationale": "The brief clearly outlines a sequence of phases and milestones, making the process layout a suitable choice. The warm style offers a friendly and approachable tone for a community-focused pilot."
+        },
+        "score": 87.0,
+        "score_source": "vision",
+        "reason": "The page is exceptionally clear and well-structured, with good use of whitespace and a logical flow from title to conclusion.",
+        "measurements": {
+          "elements": 63,
+          "min_font_px": 11.5,
+          "min_font_element": "span.rail-kicker",
+          "contrast_checks": 27,
+          "contrast_min": 4.7,
+          "contrast_min_element": "p.eyebrow",
+          "overflow": [],
+          "clipped": [],
+          "contrast_failures": [],
+          "orphaned": []
+        }
+      },
+      {
+        "plan": {
+          "layout": "antv-sequence",
+          "style": "noir",
+          "orientation": "landscape",
+          "density": "standard",
+          "palette": [],
+          "emphasis": [],
+          "assets": [],
+          "rationale": "The Brief contains two sequences, making antv-sequence a suitable layout. Noir style offers a distinct look different from previously considered styles."
+        },
+        "score": 67.0,
+        "score_source": "vision",
+        "reason": "The text is generally legible, but the composition feels unbalanced with large empty spaces and the hierarchy could be stronger in guiding the eye through the claims.",
+        "measurements": {
+          "elements": 106,
+          "min_font_px": 11.5,
+          "min_font_element": "span.rail-kicker",
+          "contrast_checks": 27,
+          "contrast_min": 5.1,
+          "contrast_min_element": "p.eyebrow",
+          "overflow": [],
+          "clipped": [],
+          "contrast_failures": [],
+          "orphaned": []
+        }
+      }
+    ]
+  },
+  "render": {
+    "format": "png",
+    "width": 1080,
+    "height": 1350
+  },
+  "warnings": [],
+  "quality": {
+    "passed": true,
+    "issues": [],
+    "measurements": {
+      "elements": 63,
+      "min_font_px": 11.5,
+      "min_font_element": "span.rail-kicker",
+      "contrast_checks": 27,
+      "contrast_min": 4.7,
+      "contrast_min_element": "p.eyebrow",
+      "overflow": [],
+      "clipped": [],
+      "contrast_failures": [],
+      "orphaned": []
+    }
+  }
+}

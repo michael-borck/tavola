@@ -1,0 +1,14 @@
+.DS_Store
+._*
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+dist/
+build/
+*.egg-info/
+desktop/src-tauri/target/
+desktop/src-tauri/gen/
+.coverage
+coverage.xml

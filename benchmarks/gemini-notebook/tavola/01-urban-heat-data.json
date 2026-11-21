@@ -1,0 +1,241 @@
+{
+  "schemaVersion": 1,
+  "app": "tavola",
+  "version": "0.1.0",
+  "generated_at": "2026-11-21T06:26:49+00:00",
+  "source": {
+    "title": "01-urban-heat-data",
+    "origin": "benchmarks/gemini-notebook/sources/01-urban-heat-data.pdf"
+  },
+  "provider": {
+    "name": "gemini",
+    "model": "gemini-2.5-flash"
+  },
+  "brief": {
+    "title": "Cooling the city: the case for street trees",
+    "dek": "A review for a city resilience committee compares heat exposure, tree cover, costs, and implementation time of urban cooling interventions.",
+    "thesis": "Mature street trees are a cost-effective, long-term urban cooling solution that also provides additional environmental and health benefits.",
+    "claims": [
+      {
+        "text": "Mature street trees cut peak street temperature by up to 4.2°C.",
+        "value": "4.2°C",
+        "label": "peak street temperature reduction",
+        "numeric": 4.2,
+        "unit": "°C",
+        "source": null
+      },
+      {
+        "text": "One mature tree can intercept about 1,400 litres of rainfall a year, reducing pressure on drains.",
+        "value": "1,400 litres",
+        "label": "rainfall interception",
+        "numeric": 1400.0,
+        "unit": "litres",
+        "source": null
+      },
+      {
+        "text": "Tree cover in the surveyed district fell from 29% to 21% over ten years.",
+        "value": "29%",
+        "label": "tree cover",
+        "numeric": 29.0,
+        "unit": "%",
+        "source": null
+      },
+      {
+        "text": "Residents in planted streets report fewer heat-illness days after two summers.",
+        "value": null,
+        "label": null,
+        "numeric": null,
+        "unit": null,
+        "source": null
+      },
+      {
+        "text": "Maintenance costs for street trees are lower than installing and running new air conditioning.",
+        "value": null,
+        "label": null,
+        "numeric": null,
+        "unit": null,
+        "source": null
+      }
+    ],
+    "relationships": [
+      {
+        "kind": "sequence",
+        "summary": "The committee's preferred program for street tree implementation runs in four stages.",
+        "items": [
+          "survey streets and heat exposure",
+          "plant in winter",
+          "water and maintain for two years",
+          "evaluate shade, rain interception, and resident health"
+        ]
+      },
+      {
+        "kind": "comparison",
+        "summary": "Different urban cooling interventions offer varying peak cooling, relative costs, and time to benefit.",
+        "items": [
+          "Mature street trees",
+          "New air conditioning"
+        ]
+      }
+    ],
+    "series": [
+      {
+        "name": "Intervention Comparison",
+        "labels": [
+          "Mature street trees",
+          "Reflective roof coating",
+          "New air conditioning",
+          "Shade structures"
+        ],
+        "values": [
+          4.2,
+          2.5,
+          3.0,
+          3.0
+        ],
+        "unit": "°C"
+      }
+    ],
+    "quote": "The cheapest cooling is a tree that was planted ten years ago.",
+    "bottom_line": "Investing in a long-term street tree planting and maintenance program offers significant and sustainable urban cooling benefits, alongside other environmental and health advantages.",
+    "citations": [],
+    "suggested_density": "standard"
+  },
+  "plan": {
+    "layout": "illustrated",
+    "style": "professional",
+    "orientation": "portrait",
+    "density": "standard",
+    "palette": [],
+    "emphasis": [],
+    "assets": [],
+    "rationale": "Seeded by the tev router."
+  },
+  "design": {
+    "routing": {
+      "router": "tev",
+      "model": "tev1:4b",
+      "layout": "illustrated",
+      "confidence": 0.794,
+      "probability": 0.932,
+      "probabilities": {
+        "illustrated": 0.9320762908202834,
+        "comparison": 0.056732550270579774,
+        "process": 0.004573757716014816,
+        "trend": 0.00661740119312191
+      },
+      "usage": {
+        "input_tokens": 710,
+        "output_tokens": 0
+      },
+      "accepted": true
+    },
+    "candidates": [
+      {
+        "plan": {
+          "layout": "illustrated",
+          "style": "professional",
+          "orientation": "portrait",
+          "density": "standard",
+          "palette": [],
+          "emphasis": [],
+          "assets": [],
+          "rationale": "Seeded by the tev router."
+        },
+        "score": 87.0,
+        "score_source": "vision",
+        "reason": "The page is highly legible with good contrast and clear typography, and the hierarchy is well-defined, guiding the eye effectively through the content.",
+        "measurements": {
+          "elements": 85,
+          "min_font_px": 11.2,
+          "min_font_element": "span",
+          "contrast_checks": 23,
+          "contrast_min": 7.4,
+          "contrast_min_element": "p.illus-dek",
+          "overflow": [],
+          "clipped": [],
+          "contrast_failures": [],
+          "orphaned": []
+        }
+      },
+      {
+        "plan": {
+          "layout": "comparison",
+          "style": "noir",
+          "orientation": "portrait",
+          "density": "standard",
+          "palette": [],
+          "emphasis": [
+            0,
+            4
+          ],
+          "assets": [],
+          "rationale": "The brief explicitly provides a comparison between two urban cooling interventions, making the comparison layout ideal. Noir style offers a strong contrast suitable for a committee review."
+        },
+        "score": 81.0,
+        "score_source": "vision",
+        "reason": "The page is highly legible with clear text and good contrast, but the composition feels a bit top-heavy with a large amount of empty space at the bottom, and the hierarchy could be slightly improved by making the 'VS' more prominent.",
+        "measurements": {
+          "elements": 26,
+          "min_font_px": 12.2,
+          "min_font_element": "p.eyebrow",
+          "contrast_checks": 13,
+          "contrast_min": 5.1,
+          "contrast_min_element": "p.eyebrow",
+          "overflow": [],
+          "clipped": [],
+          "contrast_failures": [],
+          "orphaned": []
+        }
+      },
+      {
+        "plan": {
+          "layout": "process",
+          "style": "scientific",
+          "orientation": "portrait",
+          "density": "standard",
+          "palette": [],
+          "emphasis": [],
+          "assets": [],
+          "rationale": "The brief contains a clear sequence of steps for street tree implementation, which the process layout is designed for. Scientific style is appropriate for a committee review."
+        },
+        "score": 81.0,
+        "score_source": "vision",
+        "reason": "The page is very legible and the hierarchy is clear, but the composition feels a bit empty with large unused regions.",
+        "measurements": {
+          "elements": 24,
+          "min_font_px": 11.5,
+          "min_font_element": "span.rail-kicker",
+          "contrast_checks": 14,
+          "contrast_min": 5,
+          "contrast_min_element": "p.eyebrow",
+          "overflow": [],
+          "clipped": [],
+          "contrast_failures": [],
+          "orphaned": []
+        }
+      }
+    ]
+  },
+  "render": {
+    "format": "png",
+    "width": 1080,
+    "height": 1350
+  },
+  "warnings": [],
+  "quality": {
+    "passed": true,
+    "issues": [],
+    "measurements": {
+      "elements": 85,
+      "min_font_px": 11.2,
+      "min_font_element": "span",
+      "contrast_checks": 23,
+      "contrast_min": 7.4,
+      "contrast_min_element": "p.illus-dek",
+      "overflow": [],
+      "clipped": [],
+      "contrast_failures": [],
+      "orphaned": []
+    }
+  }
+}

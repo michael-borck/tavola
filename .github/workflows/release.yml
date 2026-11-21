@@ -1,0 +1,75 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      release_id: ${{ steps.release.outputs.id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+          enable-cache: true
+      - run: uv sync --all-extras
+      - run: uv run --no-sync playwright install --with-deps chromium
+      - run: uv run --no-sync ruff check src tests
+      - run: uv run --no-sync basedpyright
+      - run: uv run --no-sync pytest -q
+      - run: uv build
+      - id: release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Tavola ${{ github.ref_name }}
+          body: |
+            One source, one designed infographic.
+
+            Desktop installers for macOS, Windows, and Linux are attached below.
+            The macOS and Windows builds are unsigned for now; macOS may need
+            right-click → Open on first launch. The Python wheel is attached for
+            command-line and server use.
+          files: dist/*.whl
+
+  desktop:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: macos-15
+            args: --target aarch64-apple-darwin
+          - platform: macos-15-intel
+            args: --target x86_64-apple-darwin
+          - platform: windows-latest
+            args: ""
+          - platform: ubuntu-22.04
+            args: --bundles appimage,deb
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v4
+      - if: matrix.platform == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev patchelf
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.platform == 'macos-15' && 'aarch64-apple-darwin' || matrix.platform == 'macos-15-intel' && 'x86_64-apple-darwin' || '' }}
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          projectPath: desktop
+          releaseId: ${{ needs.prepare.outputs.release_id }}
+          includeUpdaterJson: false
+          tauriScript: npx --yes @tauri-apps/cli@^2
+          args: ${{ matrix.args }}

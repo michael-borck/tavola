@@ -40,7 +40,7 @@ jobs:
             macOS builds are signed and notarized. Windows and Linux builds are
             unsigned for now. The Python wheel and source distribution are
             attached, and the package is on PyPI.
-          files: dist/*
+          files: dist/*.whl dist/*.tar.gz
 
   desktop:
     needs: prepare

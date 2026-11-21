@@ -44,16 +44,21 @@ The desktop builds are attached to GitHub Releases; macOS and Windows builds
 are unsigned for now. There is no PyPI release yet, so the wheel is also on the
 release page.
 
+Python wheel:
+
+```bash
+pip install "tavola[serve,render] @ https://github.com/michael-borck/tavola/releases/download/v0.1.0/tavola-0.1.0-py3-none-any.whl"
+playwright install chromium
+```
+
 From a checkout:
 
 ```bash
 export UV_PROJECT_ENVIRONMENT="$HOME/.venvs/tavola"
 uv sync --all-extras
 uv run tavola --init-config
+uv run playwright install chromium
 ```
-
-For PNG and PDF export, install Playwright's Chromium:
-`uv run playwright install chromium`.
 
 For development on this machine (the repo lives on exFAT, so keep the venv on
 the internal disk):
@@ -69,7 +74,8 @@ uv run --no-sync pytest
 ## Configure
 
 Layered, later wins: defaults → `~/.tavola.yaml` → `./tavola.yaml` → flags.
-Secrets are `${VAR}` references, so no plaintext keys live in the file.
+Secrets can be `${VAR}` references. The CLI never needs a plaintext key; the
+desktop first-run sheet writes the key to `~/.tavola.yaml` with mode 600.
 
 ```bash
 tavola --init-config

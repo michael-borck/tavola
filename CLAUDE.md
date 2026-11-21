@@ -34,8 +34,9 @@ Best-of-3 is opt-in: `design.candidates: 3` or `--candidates 3`; without a
 vision model it keeps the first passing candidate and records a warning. The
 full sweep is one-off, not in CI.
 
-Tauri desktop shell and landing page are built in the working tree; the first
-public release, signed/notarized installers, and deployment are not done.
+Tauri desktop shell and landing page are built. `v0.1.0` is published with
+unsigned macOS, Windows, and Linux installers plus the wheel; the landing page
+is deployed from the `landing/` folder. Signing and notarization remain.
 
 ## Run it
 

@@ -1,8 +1,8 @@
 # Desktop (M3 — in progress)
 
 The desktop app is a thin Tauri v2 shell around the Python core, following the
-same shape as Limn and Canturía. The shell is built; signed/notarized builds
-and the first public release are not.
+same shape as Limn and Canturía. The 0.1.0 builds are published from GitHub
+Releases; they are unsigned, and not notarized yet.
 
 ## How it works
 

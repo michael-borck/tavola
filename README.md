@@ -16,6 +16,10 @@ source.pdf ──► brief ──► design plan ──► HTML/CSS ──► PN
 Tavola is the artefact half of a "NotebookLM for one page": it cares about
 the visual result, not about being a notebook app.
 
+[Download](https://github.com/michael-borck/tavola/releases/latest) ·
+[Landing page](https://michael-borck.github.io/tavola/) ·
+[Source](https://github.com/michael-borck/tavola)
+
 ## Why it looks better than a prompt-and-fill script
 
 One prompt that returns a title, three stats and four bullets produces a

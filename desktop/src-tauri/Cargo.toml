@@ -1,6 +1,6 @@
 [package]
 name = "tavola-desktop"
-version = "0.1.0"
+version = "0.1.1"
 description = "Tavola — one source, one infographic, on your desktop"
 authors = ["Michael Borck <michael.borck@curtin.edu.au>"]
 license = "MIT"

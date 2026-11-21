@@ -1,8 +1,8 @@
 # Desktop (M3 — in progress)
 
 The desktop app is a thin Tauri v2 shell around the Python core, following the
-same shape as Limn and Canturía. The 0.1.0 builds are published from GitHub
-Releases; they are unsigned, and not notarized yet.
+same shape as Limn and Canturía. The 0.1.1 builds are published from GitHub Releases. macOS builds are signed
+and notarized; Windows and Linux builds are unsigned.
 
 ## How it works
 
@@ -20,8 +20,8 @@ Releases; they are unsigned, and not notarized yet.
    so it exits if the desktop process crashes or is killed.
 
 The runtime pin lives in `src-tauri/src/main.rs` as `TAVOLA_WHEEL_URL`. It points
-at the wheel attached to the `v0.1.0` GitHub release. There is no PyPI release
-yet.
+at the wheel attached to the `v0.1.1` GitHub release. The same wheel is on
+PyPI as `tavola`.
 
 ## Build
 
@@ -41,10 +41,11 @@ cargo run --manifest-path src-tauri/Cargo.toml
 
 ## Release
 
-`.github/workflows/release.yml` runs on `v*` tags. It tests, builds the wheel,
-builds unsigned macOS arm64/x86_64, Windows, and Linux installers with
-`tauri-action`, and uploads the wheel to the same release. Signing and
-notarization are deliberately not configured yet.
+`.github/workflows/release.yml` runs on `v*` tags. It tests, publishes the wheel
+and sdist to PyPI, and builds signed/notarized macOS arm64/x86_64 plus unsigned
+Windows and Linux installers with `tauri-action`. Signing uses the
+`Developer ID Application` certificate and an App Store Connect API key; all
+credentials are repository secrets.
 
 ## Why Tauri
 

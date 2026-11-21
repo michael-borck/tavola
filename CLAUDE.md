@@ -16,7 +16,7 @@ grid.
 
 ## Current status
 
-**0.1.0 — M1 and M2 complete; M3 in progress.** Package, layered config, four text/vision LLM
+**0.1.1 — M1 and M2 complete; M3 in progress.** Package, layered config, four text/vision LLM
 providers with structured output, content extraction, brief, design plan,
 twenty-five layouts, six style packs, bundled OFL fonts, deterministic HTML
 renderer, Playwright PNG/PDF, static quality gate, measured browser gate with
@@ -34,9 +34,9 @@ Best-of-3 is opt-in: `design.candidates: 3` or `--candidates 3`; without a
 vision model it keeps the first passing candidate and records a warning. The
 full sweep is one-off, not in CI.
 
-Tauri desktop shell and landing page are built. `v0.1.0` is published with
-unsigned macOS, Windows, and Linux installers plus the wheel; the landing page
-is deployed from the `landing/` folder. Signing and notarization remain.
+Tauri desktop shell and landing page are built. `v0.1.1` is published on PyPI
+and GitHub Releases with signed/notarized macOS, unsigned Windows/Linux
+installers, and the wheel; the landing page is deployed from `landing/`.
 
 ## Run it
 
@@ -128,8 +128,8 @@ vision judge) are reported as warnings and recorded in the sidecar.
    composition/module catalog. `compose.py` ranks valid layouts and
    `router.py` lets Tev seed a best-of-N candidate (SPEC §4.6).
 3. **M3 — desktop (in progress).** Tauri v2 shell, uv-bootstrapped sidecar,
-   first-run provider sheet, unsigned CI installers, landing page. Signing,
-   notarization, and public release assets remain.
+   first-run provider sheet, signed/notarized macOS installers, unsigned
+   Windows/Linux installers, landing page.
 4. **M4 — illustrated mode.** Text-free generated assets via Limn providers,
    composited; optional painterly image-model mode.
 5. **M5 — notebooks, only if earned.**

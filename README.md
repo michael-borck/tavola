@@ -17,6 +17,7 @@ Tavola is the artefact half of a "NotebookLM for one page": it cares about
 the visual result, not about being a notebook app.
 
 [Download](https://github.com/michael-borck/tavola/releases/latest) ·
+[PyPI](https://pypi.org/project/tavola/) ·
 [Landing page](https://michael-borck.github.io/tavola/) ·
 [Source](https://github.com/michael-borck/tavola)
 
@@ -40,14 +41,12 @@ template, not a design. Tavola separates four decisions:
 
 ## Install
 
-The desktop builds are attached to GitHub Releases; macOS and Windows builds
-are unsigned for now. There is no PyPI release yet, so the wheel is also on the
-release page.
-
-Python wheel:
+The desktop builds are attached to GitHub Releases; macOS builds are signed and
+notarized, while Windows builds are unsigned for now. The Python package is on
+PyPI.
 
 ```bash
-pip install "tavola[serve,render] @ https://github.com/michael-borck/tavola/releases/download/v0.1.0/tavola-0.1.0-py3-none-any.whl"
+pip install "tavola[serve,render]"
 playwright install chromium
 ```
 
@@ -248,8 +247,9 @@ Orientations: `square` 1080×1080, `portrait` 1080×1350, `landscape` 1600×900.
 A Tauri v2 shell wraps a `uv`-bootstrapped private runtime and the local
 `tavola serve` process, using the same pattern as
 [Limn](https://github.com/michael-borck/limn) and
-[Canturía](https://github.com/michael-borck/canturia). Unsigned installers
-come from GitHub Releases; see `desktop/README.md`.
+[Canturía](https://github.com/michael-borck/canturia). Signed and notarized
+macOS builds, plus unsigned Windows/Linux builds, come from GitHub Releases;
+see `desktop/README.md`.
 
 ## License
 

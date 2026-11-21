@@ -19,7 +19,7 @@ use tauri::{AppHandle, Emitter, Manager, RunEvent, State};
 
 const TAVOLA_VERSION: &str = env!("CARGO_PKG_VERSION");
 const TAVOLA_WHEEL_URL: &str =
-    "https://github.com/michael-borck/tavola/releases/download/v0.1.0/tavola-0.1.0-py3-none-any.whl";
+    "https://github.com/michael-borck/tavola/releases/download/v0.1.1/tavola-0.1.1-py3-none-any.whl";
 
 struct Sidecar(Mutex<Option<Child>>);
 

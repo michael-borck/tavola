@@ -303,8 +303,8 @@ remote mode comes later.
 
 Tauri v2, OS webview, `uv`-bootstrapped private runtime, sidecar on a random
 localhost port, first-run Settings sheet that writes `~/.tavola.yaml`. Same
-pattern as Limn and Canturía. `v0.1.0` ships unsigned installers from GitHub
-Releases. Signing and notarization are follow-up work.
+pattern as Limn and Canturía. `v0.1.1` ships signed/notarized macOS and unsigned
+Windows/Linux installers from GitHub Releases, and the wheel is on PyPI.
 
 ## 7. Config
 

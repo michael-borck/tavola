@@ -9,6 +9,7 @@ from typing import Any
 import pytest
 from typer.testing import CliRunner
 
+from tavola import __version__
 from tavola.cli import app
 
 runner = CliRunner()
@@ -50,7 +51,7 @@ BRIEF_PAYLOAD: dict[str, Any] = {
 def test_version() -> None:
     result = runner.invoke(app, ["--version"])
     assert result.exit_code == 0
-    assert "tavola 0.1.0" in result.output
+    assert f"tavola {__version__}" in result.output
 
 
 def test_layouts_command_lists_catalog() -> None:

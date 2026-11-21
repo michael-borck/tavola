@@ -101,15 +101,19 @@ def test_bad_config_path_exits_nonzero() -> None:
 
 
 def test_generate_help_mentions_variants() -> None:
-    result = runner.invoke(
-        app, ["generate", "--help"], env={"COLUMNS": "120"}
-    )
+    from typer.main import get_command
+
+    result = runner.invoke(app, ["generate", "--help"])
     assert result.exit_code == 0
-    assert "--candidates" in result.output
-    assert "--judge" in result.output
-    assert "--router" in result.output
-    assert "--mode" in result.output
-    assert "--illustration-style" in result.output
+    group = get_command(app)
+    commands = group.commands  # type: ignore[attr-defined]
+    command = commands["generate"]
+    options = {opt for param in command.params for opt in param.opts}
+    assert "--candidates" in options
+    assert "--judge" in options
+    assert "--router" in options
+    assert "--mode" in options
+    assert "--illustration-style" in options
 
 
 def test_health_prints_configuration(
